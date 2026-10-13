@@ -1,0 +1,8 @@
+{
+  "name": "TT Electric Vehicle",
+  "description": "Website for TT Electric Vehicle, featuring the solar-charged S01 Barrio SUV, interactive savings calculator, product autonomies, and investor portal.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}

@@ -1,0 +1,77 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --color-navy-900: #173713;
+  --color-blue-600: #538742;
+  --color-black: #161616;
+  --color-gray-100: #fbfaf8;
+  --color-gray-600: #555555;
+  --color-navy-overlay: rgba(22, 33, 62, 0.85);
+
+  --color-verde: #538742;
+  --color-dorado-100: #d6b724;
+
+
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Inter", sans-serif;
+  --font-mono: "Inter", monospace;
+}
+
+/* Custom Base styles */
+@layer base {
+  body {
+    @apply font-sans text-gray-600 bg-white antialiased;
+    line-height: 1.5;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-display text-navy-900 font-bold tracking-tight;
+  }
+}
+
+/* Smooth transitions */
+.transition-all-custom {
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+.scrollbar-none::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.scrollbar-none {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+
+@keyframes shine {
+  0% {
+    background-position: 200% center;
+  }
+  100% {
+    background-position: -200% center;
+  }
+}
+
+.tcl-text-gradient--blue-center {
+  color: #2563eb;
+}
+
+.tcl-text-gradient--blue-center.animating {
+  background: linear-gradient(
+    90deg,
+    #2563eb 0%,
+    #2563eb 35%,
+    #ffffff 50%,
+    #2563eb 65%,
+    #2563eb 100%
+  );
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: shine 2s linear infinite;
+}
+
+
