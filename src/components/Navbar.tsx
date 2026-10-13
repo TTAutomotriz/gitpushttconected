@@ -50,6 +50,7 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPath, onNavigate }) => {
   }, [lastScrollY]);
 
   const navLinks: NavLink[] = [
+    { label: 'Inicio', href: '/' },
     { label: 'Vehículo', href: '/vehiculo' },
     { label: 'Únete al equipo', href: '/unete-al-equipo' },
     { label: 'Aliados & Proveedores', href: '/aliados-proveedores' },
@@ -62,8 +63,8 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPath, onNavigate }) => {
   };
 
   const showNav = isVisible || isOpen;
-  const isVehiculo = currentPath === '/vehiculo' || currentPath === '/noticias/primer-auto-electrico-solar-mexicano';
-  const isAbsoluteNav = currentPath === '/vehiculo' || currentPath === '/design-ordenar' || currentPath === '/noticias/primer-auto-electrico-solar-mexicano';
+  const isVehiculo = currentPath === '/noticias/primer-auto-electrico-solar-mexicano';
+  const isAbsoluteNav = currentPath === '/design-ordenar' || currentPath === '/noticias/primer-auto-electrico-solar-mexicano';
 
   const navBgClass = isOpen
     ? "bg-white border-b border-gray-100"

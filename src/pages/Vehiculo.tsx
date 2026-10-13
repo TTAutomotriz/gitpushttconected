@@ -610,81 +610,130 @@ const interiorImages = {
   return (
     <div className="w-full bg-white flex flex-col">
       
-      {/* 1. HERO / HEADER SECTION */}
-      <section className="relative w-full h-[85vh] flex flex-col justify-between items-center pt-26 sm:pt-[110px] md:pt-[130px] pb-8 md:pb-12 overflow-hidden">
-        {/* Background Landscape / Highway Image with subtle overlay */}
-        <div className="absolute inset-0 z-0">
-          <img
-            src={mountainRoad}
-            alt="Paisaje carretera montañosa de fondo"
-            referrerPolicy="no-referrer"
-            className="w-full h-full object-cover scale-102 filter brightness-[0.70] contrast-[1.02]"
-          />
-          {/* Subtle dark overlay to maximize text resolution and legibility */}
-          <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/10 to-black/60 pointer-events-none" />
+      {/* 1. HERO / BANNER SECTION CON ESTILO DE PÁGINA DE INICIO */}
+      <section className="w-full pt-3 sm:pt-5 pb-4 px-3 sm:px-6 lg:px-8 max-w-[1550px] mx-auto">
+        {/* DESKTOP / TABLET VERSION (md: and up): Caja con bordes curvos, imagen mountainRoad de fondo, texto arriba y botón abajo dentro de la imagen */}
+        <div 
+          className="hidden md:flex relative w-full h-[76vh] lg:h-[82vh] min-h-[560px] rounded-2xl sm:rounded-3xl lg:rounded-[2.5rem] overflow-hidden shadow-xl border border-stone-300/60"
+        >
+          {/* Imagen de fondo de carretera montañosa sin degradados artificiales */}
+          <div className="absolute inset-0 z-0">
+            <img
+              src={mountainRoad}
+              alt="Paisaje carretera montañosa de fondo"
+              referrerPolicy="no-referrer"
+              className="w-full h-full object-cover filter brightness-[0.70] contrast-[1.02]"
+            />
+            <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/20 to-black/60 pointer-events-none" />
+          </div>
+
+          {/* Contenido dentro del div en escritorio: Texto en la parte superior y Botón en la parte inferior */}
+          <div className="relative z-10 w-full h-full max-w-5xl mx-auto px-6 lg:px-12 flex flex-col items-center justify-between pt-10 sm:pt-12 lg:pt-14 pb-9 sm:pb-10 lg:pb-12 text-center">
+            {/* Bloque superior: Título, 3 Iconos y Subtítulo */}
+            <div className="flex flex-col items-center w-full">
+              <motion.h1 
+                initial={{ opacity: 0, y: 15 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
+                className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-display font-extrabold text-white tracking-tight leading-tight max-w-4xl text-balance drop-shadow-sm"
+              >
+                Model TTe01
+              </motion.h1>
+
+              {/* Div de los 3 iconos con texto (debajo del título y arriba del subtítulo) */}
+              <div className="flex flex-wrap items-center justify-center gap-x-5 lg:gap-x-7 gap-y-2 text-xs lg:text-sm font-semibold text-gray-200 mt-5 lg:mt-6">
+                <div className="flex items-center gap-1.5 lg:gap-2">
+                  <Icon icon="simple-line-icons:energy" className="w-4 h-4 lg:w-5 lg:h-5 text-white" />
+                  <span>Eléctrico</span>
+                </div>
+                <div className="flex items-center gap-1.5 lg:gap-2">
+                  <Icon icon="fluent:weather-sunny-32-regular" className="w-4 h-4 lg:w-5 lg:h-5 text-white" />
+                  <span>Techo Solar</span>
+                </div>
+                <div className="flex items-center gap-1.5 lg:gap-2">
+                  <Icon icon="fluent:highway-20-filled" className="w-4 h-4 lg:w-5 lg:h-5 text-white" />
+                  <span>+250km</span>
+                </div>
+              </div>
+
+              <h2 className="mt-3 lg:mt-4 text-lg sm:text-2xl md:text-3xl font-display font-normal tracking-tight text-white underline">
+                Desde $950 a 142 Semanas
+              </h2>
+            </div>
+
+            {/* Bloque inferior: Botón dentro de la imagen */}
+            <div className="flex flex-row gap-3 lg:gap-4 items-center justify-center w-full max-w-[450px]">
+              <Button 
+                variant="primary" 
+                className="w-[200px] lg:w-[240px] text-xs lg:text-sm px-4 lg:px-6 whitespace-nowrap shadow-md hover:shadow-lg transition-shadow"
+                onClick={() => {
+                  window.history.pushState({}, '', '/design-ordenar');
+                  window.dispatchEvent(new PopStateEvent('popstate'));
+                  window.scrollTo({ top: 0, behavior: 'instant' });
+                }}
+              >
+                Lo Quiero
+              </Button>
+            </div>
+          </div>
         </div>
 
-        {/* Hero Content aligned and centered */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-          className="relative z-10 w-full max-w-8xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-white flex flex-col items-center -mt-8 sm:-mt-12 md:-mt-16"
+        {/* MOBILE VERSION (< md): Caja con bordes curvos, imagen mountainRoad de fondo, texto en la parte superior dentro de la imagen y botón afuera abajo ocupando todo el ancho */}
+        <div 
+          className="md:hidden relative w-full rounded-2xl sm:rounded-3xl overflow-hidden shadow-xl border border-stone-300/60 pt-7 sm:pt-9 pb-12 sm:pb-16 px-4 sm:px-6 flex flex-col items-center justify-start text-center min-h-[380px] sm:min-h-[440px]"
         >
-          <h1 className="text-3xl sm:text-4xl md:text-5xl font-display font-extrabold text-white tracking-tight leading-tight max-w-4xl text-balance drop-shadow-sm animate-fade-in">
-            Modelo S01 Barrio
-          </h1>
+          {/* Imagen de fondo sin degradados de color */}
+          <div className="absolute inset-0 z-0">
+            <img
+              src={mountainRoad}
+              alt="Paisaje carretera montañosa de fondo"
+              referrerPolicy="no-referrer"
+              className="w-full h-full object-cover filter brightness-[0.70] contrast-[1.02]"
+            />
+            <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/25 to-black/50 pointer-events-none" />
+          </div>
 
-                      <div className="flex flex-wrap items-center justify-center gap-x-4 gap-y-1.5 text-xs sm:text-sm text-gray-200 mt-5">
-                       <div className="flex items-center gap-1.5">
+          {/* Texto y 3 Iconos en móvil en la parte superior dentro del contenedor */}
+          <div className="relative z-10 w-full flex flex-col items-center">
+            <h1 className="text-2xl sm:text-3xl font-display font-extrabold tracking-tight leading-tight text-white text-balance drop-shadow-sm">
+              Model TTe01
+            </h1>
 
-                         <Icon icon="simple-line-icons:energy" className="w-4 h-4 sm:w-5 sm:h-5 text-white" />
-                         <span>Eléctrico</span>
+            <div className="flex flex-wrap items-center justify-center gap-x-4 gap-y-1.5 text-xs sm:text-sm font-semibold text-gray-200 mt-4 px-2">
+              <div className="flex items-center gap-1.5">
+                <Icon icon="simple-line-icons:energy" className="w-4 h-4 sm:w-5 sm:h-5 text-white" />
+                <span>Eléctrico</span>
+              </div>
+              <div className="flex items-center gap-1.5">
+                <Icon icon="fluent:weather-sunny-32-regular" className="w-4 h-4 sm:w-5 sm:h-5 text-white" />
+                <span>Techo Solar</span>
+              </div>
+              <div className="flex items-center gap-1.5">
+                <Icon icon="fluent:highway-20-filled" className="w-4 h-4 sm:w-5 sm:h-5 text-white" />
+                <span>+250km</span>
+              </div>
+            </div>
 
-                       </div>
+            <h2 className="mt-3.5 text-base sm:text-lg font-display font-normal tracking-tight text-white underline">
+              Desde $950 a 142 Semanas
+            </h2>
+          </div>
+        </div>
 
-                       <div className="flex items-center gap-1.5">
-                         <Icon icon="fluent:weather-sunny-32-regular" className="w-4 h-4 sm:w-5 sm:h-5 text-white" />
-                         <span>Techo Solar</span>
-
-
-                       </div>
-
-
-                       <div className="flex items-center gap-1.5">
-                         <Icon icon="fluent:highway-20-filled" className="w-4 h-4 sm:w-5 sm:h-5 text-white" />
-                         <span>+250km</span>
-
-
-                       </div>
-                     </div>         
-
-          
-          <h2 className="mt-4 text-lg sm:text-2xl md:text-3xl font-display font-normal tracking-tight text-white underline">
-            Desde $950 a 142 Semanas
-          </h2>
-
-        </motion.div>
-
-         {/* Recycled and aligned global action buttons with 16px gap at the bottom */}
-         <motion.div
-           initial={{ opacity: 0, y: 20 }}
-           animate={{ opacity: 1, y: 0 }}
-           transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: 0.2 }}
-           className="relative z-10 w-full max-w-[420px] sm:max-w-none px-4 flex justify-center mt-auto"
-         >
-           <Button 
-             variant="primary" 
-             className="w-full sm:w-[240px] text-xs sm:text-sm whitespace-nowrap"
-             onClick={() => {
-               window.history.pushState({}, '', '/design-ordenar');
-               window.dispatchEvent(new PopStateEvent('popstate'));
-               window.scrollTo({ top: 0, behavior: 'instant' });
-             }}
-           >
-             Lo Quiero
-           </Button>
-         </motion.div>
+        {/* BOTÓN AFUERA Y DEBAJO DEL DIV EN MÓVIL: Ocupa todo el largo del div respetando los márgenes globales */}
+        <div className="md:hidden mt-3.5 sm:mt-4 w-full">
+          <Button 
+            variant="primary" 
+            className="w-full text-sm sm:text-base py-3 sm:py-3.5 px-6 whitespace-nowrap text-center justify-center shadow-md font-semibold" 
+            onClick={() => {
+              window.history.pushState({}, '', '/design-ordenar');
+              window.dispatchEvent(new PopStateEvent('popstate'));
+              window.scrollTo({ top: 0, behavior: 'instant' });
+            }}
+          >
+            Lo Quiero
+          </Button>
+        </div>
       </section>
 
       {/* 4. AUTONOMÍAS */}
@@ -702,7 +751,7 @@ const interiorImages = {
               Explora sus características
             </span>
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-display font-normal text-navy-900 tracking-tight leading-tight w-full">
-              Te presentamos <br /> el Modelo 01
+              Te presentamos <br /> el Model TTe01
             </h2>
       
           </motion.div>
@@ -1407,7 +1456,7 @@ const interiorImages = {
           >
 
            <h1 className="text-3xl sm:text-4xl md:text-5xl font-display font-normal text-white tracking-tight leading-tight max-w-4xl drop-shadow-md animate-fade-in">
-            Modelo S01 Barrio
+            Model TTe01
            </h1>
 
            <span className="text-white font-sans font-semibold tracking-widest text-sm sm:text-lg md:text-xl block mt-4">

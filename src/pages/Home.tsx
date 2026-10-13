@@ -456,10 +456,82 @@ export const Home: React.FC = () => {
     <div className="w-full flex flex-col">
       {/* 1. HERO SECTION WITH CAROUSEL IN CURVED BOX */}
       <section className="w-full pt-3 sm:pt-5 pb-4 px-3 sm:px-6 lg:px-8 max-w-[1550px] mx-auto">
-        {/* DESKTOP / TABLET VERSION (md: and up): immersive full banner with carousel background */}
-        <div className="hidden md:flex relative w-full h-[78vh] lg:h-[84vh] min-h-[580px] rounded-2xl sm:rounded-3xl lg:rounded-[2.5rem] overflow-hidden items-start justify-center pt-10 lg:pt-14 shadow-xl border border-gray-200/50 bg-neutral-900">
-          {/* Carrusel de imágenes de fondo (rotación cada 3.5s) */}
-          <div className="absolute inset-0 z-0 overflow-hidden">
+        {/* DESKTOP / TABLET VERSION (md: and up): Contenedor con degradado horizontal #d8d5ca -> #fffcf5, texto e iconos a la izquierda, imagen al borde derecho */}
+        <div 
+          className="hidden md:flex relative w-full h-[76vh] lg:h-[82vh] min-h-[560px] rounded-2xl sm:rounded-3xl lg:rounded-[2.5rem] overflow-hidden shadow-xl border border-stone-300/60 items-center justify-between"
+          style={{
+            background: 'linear-gradient(90deg, #d8d5ca 0%, #fffcf5 100%)'
+          }}
+        >
+          {/* Columna Izquierda: Texto, 3 Iconos y Botones */}
+          <div className="w-[50%] lg:w-[50%] xl:w-[52%] h-full flex flex-col justify-center items-center text-center px-6 lg:px-12 xl:px-16 z-10 py-8">
+            <h2 className="text-base lg:text-xl font-display font-medium tracking-tight text-neutral-700">
+              “Una nueva forma de moverte”
+            </h2>
+            
+            <motion.h2 
+              initial={{ opacity: 0, y: 15 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
+              className="mt-2 text-2xl lg:text-4xl xl:text-5xl font-display font-bold text-navy-900 tracking-tighter leading-tight max-w-xl text-balance"
+            >
+              1er Mini Vehículo Eléctrico <br className="hidden sm:inline" /> Solar MVES 
+            </motion.h2>
+            
+            <motion.h1 
+              initial={{ opacity: 0, y: 15 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
+              className="mt-2 text-2xl lg:text-4xl xl:text-5xl font-display font-extrabold tracking-tighter leading-tight text-neutral-950"
+            >
+              Modelo TTe01
+            </motion.h1>
+
+            {/* Div de los 3 iconos con texto (en medio de texto y botones) */}
+            <div className="flex flex-wrap items-center justify-center gap-x-5 lg:gap-x-7 gap-y-2 text-xs lg:text-sm font-semibold text-neutral-800 mt-6 lg:mt-8">
+              <div className="flex items-center gap-1.5 lg:gap-2">
+                <Icon icon="simple-line-icons:energy" className="w-4 h-4 lg:w-5 lg:h-5 text-navy-900" />
+                <span>Eléctrico</span>
+              </div>
+              <div className="flex items-center gap-1.5 lg:gap-2">
+                <Icon icon="fluent:weather-sunny-32-regular" className="w-4 h-4 lg:w-5 lg:h-5 text-navy-900" />
+                <span>Techo Solar</span>
+              </div>
+              <div className="flex items-center gap-1.5 lg:gap-2">
+                <Icon icon="fluent:highway-20-filled" className="w-4 h-4 lg:w-5 lg:h-5 text-navy-900" />
+                <span>+250km</span>
+              </div>
+            </div>
+
+            {/* Botones dentro del div, debajo de los iconos */}
+            <div className="mt-7 lg:mt-8 flex flex-row gap-3 lg:gap-4 items-center justify-center w-full max-w-[450px]">
+              <Button 
+                variant="primary" 
+                className="w-[185px] lg:w-[210px] text-xs lg:text-sm px-4 lg:px-6 whitespace-nowrap shadow-sm" 
+                onClick={() => {
+                  window.history.pushState({}, '', '/design-ordenar');
+                  window.dispatchEvent(new PopStateEvent('popstate'));
+                  window.scrollTo({ top: 0, behavior: 'instant' });
+                }}
+              >
+                Apartar sin enganche
+              </Button>
+              <Button 
+                variant="secondary-outline" 
+                className="w-[185px] lg:w-[210px] text-xs lg:text-sm px-4 lg:px-6 whitespace-nowrap shadow-sm" 
+                onClick={() => {
+                  window.history.pushState({}, '', '/vehiculo');
+                  window.dispatchEvent(new PopStateEvent('popstate'));
+                  window.scrollTo({ top: 0, behavior: 'instant' });
+                }}
+              >
+                Más información
+              </Button>
+            </div>
+          </div>
+
+          {/* Columna Derecha: Imagen ocupando todo el borde derecho del div del degradado */}
+          <div className="w-[50%] lg:w-[50%] xl:w-[48%] h-full relative overflow-hidden flex items-center justify-end">
             {heroCarouselImages.map((imgSrc, idx) => (
               <motion.img
                 key={idx}
@@ -469,78 +541,28 @@ export const Home: React.FC = () => {
                 initial={false}
                 animate={{
                   opacity: heroSlide === idx ? 1 : 0,
-                  scale: heroSlide === idx ? 1 : 1.03,
+                  scale: heroSlide === idx ? 1 : 1.02,
                 }}
                 transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
-                className="absolute inset-0 w-full h-full object-cover object-center pointer-events-none"
+                className="absolute inset-0 w-full h-full object-cover object-left"
               />
             ))}
-            {/* Overlay sutil para legibilidad de los textos blancos */}
-            <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/30 to-black/65 pointer-events-none" />
-          </div>
 
-          {/* Desktop Content */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-            className="relative z-10 w-full max-w-6xl mx-auto px-4 sm:px-6 lg:px-16 xl:px-24 2xl:px-32 text-center text-white flex flex-col items-center"
-          >
-            <h2 className="mt-4 text-xl lg:text-3xl font-display font-normal tracking-tight text-white drop-shadow-sm">
-              “Una nueva forma de moverte”
-            </h2>
-            
-            <motion.h2 
-              initial={{ opacity: 0, y: 15 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-              className="text-3xl lg:text-5xl font-display font-bold text-white tracking-tighter leading-tight max-w-4xl text-balance drop-shadow-sm"
-            >
-              1er  Mini Vehículo Eléctrico <br className="hidden sm:inline" /> Solar MVES 
-            </motion.h2>
-            
-            <motion.h1 
-              initial={{ opacity: 0, y: 15 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
-              className="mt-4 text-3xl lg:text-5xl font-display font-bold tracking-tighter leading-tight text-white drop-shadow-sm"
-            >
-              Modelo TTe01
-            </motion.h1>
-
-            {/* Button Row (16px gap, equal height) */}
-            <div className="mt-10 flex flex-row gap-4 items-center justify-center w-full">
-              <Button variant="primary" className="w-[220px] text-sm px-6 whitespace-nowrap" onClick={() => {
-                window.history.pushState({}, '', '/design-ordenar');
-                window.dispatchEvent(new PopStateEvent('popstate'));
-                window.scrollTo({ top: 0, behavior: 'instant' });
-              }}>
-                Apartar sin enganche
-              </Button>
-              <Button variant="white-filled" className="w-[220px] text-sm px-6 whitespace-nowrap" onClick={() => {
-                window.history.pushState({}, '', '/vehiculo');
-                window.dispatchEvent(new PopStateEvent('popstate'));
-                window.scrollTo({ top: 0, behavior: 'instant' });
-              }}>
-                Más información
-              </Button>
+            {/* Puntos de navegación en medio del carrusel */}
+            <div className="absolute bottom-5 left-1/2 -translate-x-1/2 z-20 flex items-center justify-center gap-2.5">
+              {heroCarouselImages.map((_, idx) => (
+                <button
+                  key={idx}
+                  onClick={() => setHeroSlide(idx)}
+                  className={`h-2.5 rounded-full transition-all duration-300 cursor-pointer ${
+                    heroSlide === idx
+                      ? 'w-8 bg-white shadow-md'
+                      : 'w-2.5 bg-white/50 hover:bg-white/80'
+                  }`}
+                  aria-label={`Ver imagen ${idx + 1}`}
+                />
+              ))}
             </div>
-          </motion.div>
-
-          {/* Puntos en medio (dots de navegación sin flechas) */}
-          <div className="absolute bottom-6 left-1/2 -translate-x-1/2 z-20 flex items-center justify-center gap-2.5">
-            {heroCarouselImages.map((_, idx) => (
-              <button
-                key={idx}
-                onClick={() => setHeroSlide(idx)}
-                className={`h-2.5 rounded-full transition-all duration-300 cursor-pointer ${
-                  heroSlide === idx
-                    ? 'w-8 bg-white shadow-md'
-                    : 'w-2.5 bg-white/45 hover:bg-white/80'
-                }`}
-                aria-label={`Ver imagen ${idx + 1}`}
-              />
-            ))}
           </div>
         </div>
 
@@ -566,8 +588,24 @@ export const Home: React.FC = () => {
             </h1>
           </div>
 
+          {/* Div de los 3 iconos con texto (copia en versión móvil debajo del texto) */}
+          <div className="flex flex-wrap items-center justify-center gap-x-4 gap-y-1.5 text-xs sm:text-sm font-semibold text-neutral-800 mt-3 sm:mt-4 px-3 z-10">
+            <div className="flex items-center gap-1.5">
+              <Icon icon="simple-line-icons:energy" className="w-4 h-4 sm:w-5 sm:h-5 text-navy-900" />
+              <span>Eléctrico</span>
+            </div>
+            <div className="flex items-center gap-1.5">
+              <Icon icon="fluent:weather-sunny-32-regular" className="w-4 h-4 sm:w-5 sm:h-5 text-navy-900" />
+              <span>Techo Solar</span>
+            </div>
+            <div className="flex items-center gap-1.5">
+              <Icon icon="fluent:highway-20-filled" className="w-4 h-4 sm:w-5 sm:h-5 text-navy-900" />
+              <span>+250km</span>
+            </div>
+          </div>
+
           {/* 2. IMAGEN DEL AUTO HORIZONTAL OCUPANDO TODO EL LARGO DEL DIV (más alta con aspecto 4/3) */}
-          <div className="mt-5 sm:mt-6 w-full relative aspect-[4/3] xs:aspect-[4/3] overflow-hidden">
+          <div className="mt-4 sm:mt-5 w-full relative aspect-[4/3] xs:aspect-[4/3] overflow-hidden">
             {heroCarouselImages.map((imgSrc, idx) => (
               <motion.img
                 key={idx}
@@ -983,7 +1021,7 @@ de cada kilometro.
 
       {/* 4. SAVINGS CALCULATOR SECTION */}
       <section id="calc" ref={calcRef} className="w-full pt-3 pb-8 lg:py-8 bg-white px-4 sm:px-6 lg:px-16 xl:px-24 2xl:px-32 overflow-hidden">
-        <div className="max-w-6xl mx-auto flex flex-col items-center justify-center">
+        <div className="max-w-6xl mx-auto flex flex-col items-center justify-center w-full">
 
           {/* Right Column: Calculator */}
           <motion.div
@@ -991,11 +1029,11 @@ de cada kilometro.
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-            className="w-full lg:shrink-0 flex flex-col gap-4 mb-6 lg:mb-0"
+            className="w-full flex flex-col gap-4 mb-6 lg:mb-0"
           >
             
-            {/* Solar autonomy showcase container */}
-            <div className="w-full max-w-5xl mx-auto bg-gray-100 rounded-xl sm:rounded-2xl border border-gray-200/60 p-8 sm:p-12 md:p-16 text-center flex flex-col items-center justify-center">
+            {/* Solar autonomy showcase container - matching solar section style: bg-gray-100 rounded-xl, solo fondo sin bordes */}
+            <div className="w-full bg-gray-100 rounded-xl p-8 sm:p-12 md:p-16 text-center flex flex-col items-center justify-center">
               <span className="text-blue-600 uppercase tracking-widest text-xs sm:text-sm font-bold mb-3 block">
                 Autonomía Solar
               </span>
