@@ -12,6 +12,7 @@ import autoVFinal2 from '../assets/images/auto-v-final2.jpeg';
 import banner3carros from '../assets/images/Modificaciones TERE (3).png';
 import chargePlug from '../assets/images/tt_charge_plug_1781751173453.jpg';
 import mexArch from '../assets/images/bluemex.png';
+import ttMexArch from '../assets/images/tt_mex_arch_1781751185894.png';
 import investorBg from '../assets/images/goldenima.png';
 import mountainRoad from '../assets/images/caminomonte.png';
 import rojoCar from '../assets/images/tarjetasauto.png';
@@ -21,6 +22,7 @@ import banerfinal from '../assets/images/mountainRoad.png';
 
 
 const solarRoof = 'https://res.cloudinary.com/dpynwjc8f/image/upload/v1784679614/iamgenes_seccion_vehiiculo_10_ollsar.jpg';
+const interiorpiel = 'https://res.cloudinary.com/dpynwjc8f/image/upload/v1784677261/iamgenes_seccion_vehiiculo_2_hmvnhl.jpg';
 
 const heroCarouselImages = [autoVFinal1, autoVFinal2];
 
@@ -779,7 +781,7 @@ de cada kilometro.
                       <ImageOverlayCard
                         title="Elige el espacio interior"
                         description="Acabados en tela o piel"
-                        bgImage={solarRoof}
+                        bgImage={interiorpiel}
                         className="w-full aspect-[4/3]"
                         hideTextOnDesktop={true}
                         contentPosition="top"
@@ -790,7 +792,7 @@ de cada kilometro.
                       <ImageOverlayCard
                         title="Elige entre la configuración"
                         description="Eléctrica o eléctrica solar"
-                        bgImage={mountainRoad}
+                        bgImage={solarRoof}
                         className="w-full aspect-[4/3]"
                         hideTextOnDesktop={true}
                         contentPosition="top"
@@ -899,8 +901,8 @@ de cada kilometro.
                               chargingScrollIndex === 0
                                 ? chargePlug
                                 : chargingScrollIndex === 1
-                                ? solarRoof
-                                : mountainRoad
+                                ? interiorpiel
+                                : solarRoof
                             }
                             className="w-full h-full"
                             hideTextOnDesktop={true}
@@ -1084,9 +1086,8 @@ de cada kilometro.
               {/* Reduced size image inside the frame with spacing */}
               <div className="w-full h-full overflow-hidden bg-gray-50 rounded-lg">
                 <img
-                  src="https://res.cloudinary.com/dpynwjc8f/image/upload/v1784090856/_Modificaciones_Web_Tere_lksrrt.png"
-                  alt="Puebla Cathedral and colonial architecture"
-                  referrerPolicy="no-referrer"
+                  src={ttMexArch}
+                  alt="Orgullosamente hecho en México - arquitectura y catedral"
                   loading="lazy"
                   decoding="async"
                   className="w-full h-full object-cover rounded-lg hover:scale-105 transition-transform duration-700"
