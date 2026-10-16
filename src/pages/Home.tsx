@@ -14,6 +14,7 @@ import chargePlug from '../assets/images/tt_charge_plug_1781751173453.jpg';
 import mexArch from '../assets/images/bluemex.png';
 import ttMexArch from '../assets/images/tt_mex_arch_1781751185894.png';
 import investorBg from '../assets/images/goldenima.png';
+import bateriasphoto from '../assets/images/bateriasphoto.png';
 import mountainRoad from '../assets/images/caminomonte.png';
 import rojoCar from '../assets/images/tarjetasauto.png';
 import blancoCar from '../assets/images/tarjetasauto2.png';
@@ -1330,8 +1331,8 @@ de cada kilometro.
               {/* Reduced size image inside the frame with spacing */}
               <div className="w-full h-full overflow-hidden bg-gray-50 rounded-lg">
                 <img
-                  src={investorBg}
-                  alt="Investor background hand chart overlay"
+                  src={bateriasphoto}
+                  alt="Pilas LiFePO4 - Baterías"
                   referrerPolicy="no-referrer"
                   loading="lazy"
                   decoding="async"
